@@ -1,0 +1,37 @@
+# snake and ladder 
+import random
+
+board = {
+    3: 22,5: 8,11: 26,20: 29,17: 4,19:7,71: 1,23: 9,33: 42,51: 69,72: 90,  83: 58,99: 75
+}
+
+def r_dice():
+    
+    return random.randint(1, 6)
+
+def play():
+    position = 0  
+    while position < 30:  
+        input("Press Enter ")
+        dice = r_dice()
+        print(f"You rolled: {dice}")
+        position += dice
+        
+        if position > 30:  
+            position -= dice
+            print(f"Can't move! You need exactly {30 - position} to win.")
+        elif position in board:
+            if position < board[position]:
+                print(f"Ladder! Climb up from {position} to {board[position]}.")
+            else:
+                print(f"Snake! Slide down from {position} to {board[position]}.")
+            position = board[position]
+        
+        print(f"You are now at position: {position}")
+        
+        if position == 30:
+            print("Congratulations! You won the game")
+            break
+
+
+play()
